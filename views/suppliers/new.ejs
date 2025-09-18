@@ -1,0 +1,23 @@
+<%- include("../partials/header") %>
+    <h2>Add Supplier</h2>
+    <form action="/suppliers" method="POST">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" required></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" name="address"></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;"><button type="submit">Save</button></td>
+            </tr>
+        </table>
+    </form>
+    <a href="/suppliers">⬅️ Back</a>
+    <%- include("../partials/footer") %>
