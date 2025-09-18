@@ -25,6 +25,11 @@ exports.update = async(req, res) => {
 };
 
 exports.delete = async(req, res) => {
-    await Supplier.findByIdAndDelete(req.params.id);
-    res.redirect("/suppliers");
+    try {
+        await Supplier.findByIdAndDelete(req.params.id);
+        res.redirect("/suppliers");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error deleting supplier");
+    }
 };

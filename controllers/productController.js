@@ -12,18 +12,30 @@ exports.newForm = async(req, res) => {
 };
 
 exports.create = async(req, res) => {
-    await Product.create(req.body);
-    res.redirect("/products");
+    try {
+        const { name, price, quantity, supplierId } = req.body;
+        await Product.create({ name, price, quantity, supplierId });
+        res.redirect("/products");
+    } catch (err) {
+        console.error("Error creating product:", err.message);
+        res.status(400).send("Error creating product: " + err.message);
+    }
 };
 
 exports.editForm = async(req, res) => {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate("supplierId");
     const suppliers = await Supplier.find();
     res.render("products/edit", { product, suppliers });
 };
 
 exports.update = async(req, res) => {
-    await Product.findByIdAndUpdate(req.params.id, req.body);
+    const { name, price, quantity, supplierId } = req.body;
+    await Product.findByIdAndUpdate(req.params.id, {
+        name,
+        price,
+        quantity,
+        supplierId,
+    });
     res.redirect("/products");
 };
 

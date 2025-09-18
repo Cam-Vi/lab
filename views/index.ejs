@@ -1,12 +1,25 @@
-<%- include("partials/header") %>
+<%- include('partials/header', { title: 'Dashboard' }) %>
 
-    <main>
-        <h2>Welcome 👋</h2>
-        <p>This is a simple CRUD project for Suppliers and Products.</p>
-        <div class="home-links">
-            <a href="/suppliers" class="btn">Manage Suppliers</a>
-            <a href="/products" class="btn">Manage Products</a>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Products</h5>
+                    <p class="card-text">Manage your product list.</p>
+                    <a href="/products" class="btn btn-primary">Go to Products</a>
+                </div>
+            </div>
         </div>
-    </main>
 
-    <%- include("partials/footer") %>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Suppliers</h5>
+                    <p class="card-text">Manage suppliers information.</p>
+                    <a href="/suppliers" class="btn btn-success">Go to Suppliers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>

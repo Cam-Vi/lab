@@ -7,6 +7,6 @@ router.get("/new", supplierController.newForm);
 router.post("/", supplierController.create);
 router.get("/:id/edit", supplierController.editForm);
 router.post("/:id", supplierController.update);
-router.get("/:id/delete", supplierController.delete);
+router.post("/:id/delete", supplierController.delete);
 
 module.exports = router;

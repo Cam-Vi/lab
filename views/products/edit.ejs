@@ -1,22 +1,36 @@
-<%- include("../partials/header") %>
+<%- include('../partials/header', { title: 'Edit Product' }) %>
+
     <h2>Edit Product</h2>
+
     <form action="/products/<%= product._id %>" method="POST">
-        <label>Name:</label>
-        <input type="text" name="name" value="<%= product.name %>" required><br>
-        <label>Price:</label>
-        <input type="number" name="price" step="0.01" value="<%= product.price %>"><br>
-        <label>Quantity:</label>
-        <input type="number" name="quantity" value="<%= product.quantity %>"><br>
-        <label>Supplier:</label>
-        <select name="supplierId" required>
-        <% suppliers.forEach(supplier => { %>
-            <option value="<%= supplier._id %>" 
-                <%= product.supplierId && product.supplierId.toString() === supplier._id.toString() ? "selected" : "" %>>
-                <%= supplier.name %>
-            </option>
-        <% }) %>
-    </select><br>
-        <button type="submit">Update</button>
+        <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" name="name" class="form-control" value="<%= product.name %>" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="price" class="form-control" step="0.01" value="<%= product.price %>">
+        </div>
+
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" name="quantity" class="form-control" value="<%= product.quantity %>">
+        </div>
+
+        <div class="mb-3">
+            <label for="supplierId" class="form-label">Supplier</label>
+            <select name="supplierId" class="form-select" required>
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s._id %>" <%= product.supplierId && product.supplierId._id.toString() === s._id.toString() ? "selected" : "" %>>
+          <%= s.name %>
+        </option>
+      <% }) %>
+    </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/products" class="btn btn-secondary">Cancel</a>
     </form>
-    <a href="/products">Back</a>
-    <%- include("../partials/footer") %>
+
+    <%- include('../partials/footer') %>

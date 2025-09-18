@@ -7,6 +7,8 @@ router.get("/new", productController.newForm);
 router.post("/", productController.create);
 router.get("/:id/edit", productController.editForm);
 router.post("/:id", productController.update);
-router.get("/:id/delete", productController.delete);
+
+// ✅ Route delete cần có
+router.post("/:id/delete", productController.delete);
 
 module.exports = router;
